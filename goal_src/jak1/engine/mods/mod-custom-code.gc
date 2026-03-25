@@ -21,7 +21,22 @@
 ;; Begin function defintions.
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defun runs-every-frame ()
+(defun draw-current-eco-pills ()
+(with-dma-buffer-add-bucket ((buf (-> (current-frame) global-buf)) (bucket-id debug-no-zbuf))
+    (draw-string-xy-scaled (string-format "Current Eco Pills ~D" *eco-pill-count*)
+                    buf
+                    200
+                    200
+                    (font-color progress-percent)
+                    (font-flags shadow kerning)
+                    1.25 ;;this shit is a float dont forget
+                    )))
+
+;; Prints the current eco-pill-count in bottom middle of screen (my screen at least lmfao)
+
+
+(defun runs-every-frame () 
+(draw-current-eco-pills)
   ;;(increase-power-cell-by-one) This is a call to increase-power-cell-by-one defined in mod-common-functions.gc
   (if *show-input-display* (input-display-on) (input-display-off))
   ;; ensure orb-placer is spawned/killed as requested, debug menu is updated

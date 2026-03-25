@@ -519,12 +519,13 @@
 
 (defun draw-build-revision ()
   (with-dma-buffer-add-bucket ((buf (-> (current-frame) global-buf)) (bucket-id debug-no-zbuf))
-    (draw-string-xy *pc-settings-built-sha*
+    (draw-string-xy ""
                     buf
                     0
                     (* 10 (-> (get-video-params) relative-y-scale))
                     (font-color flat-yellow)
                     (font-flags shadow kerning))))
+;; Removed *pc-settings-built-sha* replaced with empty string - Xyphles
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; process pools
