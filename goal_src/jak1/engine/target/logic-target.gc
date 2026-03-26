@@ -855,6 +855,11 @@
   (none))
 
 (defbehavior target-calc-camera-pos target ()
+;;(add-debug-sphere #t (bucket-id debug) (-> self control last-known-safe-ground) (meters 1.0) (new 'static 'rgba :r #x27 :g #xD7 :b #xF5 :a #x80))
+;; Draws a sphere around jaks last known safe ground updating every frame - Xyphles
+
+;;(add-debug-text-3d #t (bucket-id debug-no-zbuf) "Last Known Safe Ground" (-> self control last-known-safe-ground) (font-color default) (new 'static 'vector2h :x -50 :y -20 ))
+;; Draws text label for debug sphere with a static vector2h to offset in the middle - Xyphles
   (let ((gp-0 (new 'stack-no-clear 'vector)))
     (cond
       ((and (= (-> self next-state name) 'target-clone-anim)

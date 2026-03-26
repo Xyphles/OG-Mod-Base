@@ -34,9 +34,16 @@
 
 ;; Prints the current eco-pill-count in bottom middle of screen (my screen at least lmfao)
 
+(defun draw-last-known-safe-ground ()
+;;(add-debug-sphere #t (bucket-id debug) (-> self control last-known-safe-ground) (meters 1.0) (new 'static 'rgba :g #x80 :a #x80))
+
+
+)
+
 
 (defun runs-every-frame () 
-(draw-current-eco-pills)
+;;(draw-last-known-safe-ground)
+;;(draw-current-eco-pills)
   ;;(increase-power-cell-by-one) This is a call to increase-power-cell-by-one defined in mod-common-functions.gc
   (if *show-input-display* (input-display-on) (input-display-off))
   ;; ensure orb-placer is spawned/killed as requested, debug menu is updated
