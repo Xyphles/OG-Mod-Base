@@ -2267,6 +2267,7 @@
     (debug-menu-append-item s5-0
                             (debug-menu-make-from-template arg0
                                                            '(menu "Game"
+                                                              
                                                                  (function "New Game" #f ,(lambda () (initialize! *game-info* 'game (the-as game-save #f) (the-as string #f)) (none)))
                                                                  (function "New Life" #f ,(lambda () (initialize! *game-info* 'die (the-as game-save #f) (the-as string #f)) (none)))
                                                                  (function "Reset Game"
@@ -2505,6 +2506,16 @@
     (debug-menu-append-item s5-0
                             (debug-menu-make-from-template arg0
                                                            '(menu "Target"
+
+                                                           (flag "Lava Walk State"
+                                                                       #f
+                                                                       ,(lambda ((arg0 int) (arg1 debug-menu-msg))
+                                                                         (when (= arg1 (debug-menu-msg press))
+                                                                           (if *target* (logxor! (-> *target* state-flags) (state-flags being-attacked))))
+                                                                         (the-as symbol (and *target* (logtest? (-> *target* state-flags) (state-flags being-attacked))))))
+
+                                                                         ;; add lava walk state toggle (being-attacked state flag) - Xyphles
+                                                                         
                                                                  (flag "Target Stats" *stats-target* dm-boolean-toggle-pick-func)
                                                                  (function "Play" #f ,(lambda () (play #t #t)))
                                                                  (function "Start" #f ,(lambda () (the-as int (start 'debug (get-or-create-continue! *game-info*)))))
