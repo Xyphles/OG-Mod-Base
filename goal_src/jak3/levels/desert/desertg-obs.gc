@@ -159,7 +159,7 @@
         (let ((v1-5 (new 'process 'collide-shape-prim-mesh s4-0 (the-as uint 0) (the-as uint 0))))
           (set! (-> v1-5 prim-core collide-as) (collide-spec obstacle))
           (set! (-> v1-5 prim-core collide-with) (collide-spec jak bot player-list))
-          (set! (-> v1-5 prim-core action) (collide-action solid))
+          (set! (-> v1-5 prim-core action) (collide-action solid)) ;; to patch cave skip all you need to add is an extra collide-action "dont-push-away" -Xyphles
           (set! (-> v1-5 transform-index) 3)
           (set-vector! (-> v1-5 local-sphere) 20480.0 40960.0 61440.0 143360.0)
           (set! (-> s4-0 total-prims) (the-as uint 1))

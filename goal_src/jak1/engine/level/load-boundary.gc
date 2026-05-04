@@ -402,7 +402,7 @@
          (s5-0 (-> gp-0 boundary)))
     (format *stdcon* "~3L")
     (cond
-      ((not s5-0) (format *stdcon* "No load boundary selected - use Player 2 pad to select~%"))
+      ((not s5-0) (format *stdcon* "")) ;; removed No load boundary selected - use Player 2 pad to select~% string - Xyphles
       (else
        (format *stdcon* "Selected load boundary ~X~%" s5-0)
        (if (logtest? (-> s5-0 flags) (load-boundary-flags player))

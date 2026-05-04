@@ -1313,7 +1313,7 @@
                    (not (-> s4-4 inside-boxes?)) ;; but not in A
                    )
           (if (and (= *cheat-mode* 'debug) (-> s4-4 other inside-boxes?))
-            (format *stdcon* "~3LForcing outside of ~A [bad split boxes]~%~0L" (-> s4-4 other name)))
+            (format *stdcon* "" (-> s4-4 other name))) ;; removed ~3LForcing outside of ~A [bad split boxes]~%~0L - Xyphles
           (set! (-> s4-4 other inside-boxes?) #f)))))
   ;; if we are outside of the boxes, we consider ourselves "outside of bsp"
   ;; if we are outside of both levels boxes, then we don't really know what to do

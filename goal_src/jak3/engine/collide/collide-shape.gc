@@ -2332,7 +2332,7 @@
   (none)
   )
 
-(defmethod do-push-aways ((this collide-shape))
+(defmethod do-push-aways ((this collide-shape)) ;; Caveskip moving eggwall function i think -Xyphles
   (local-vars (at-0 int) (v1-55 float) (a2-5 float) (a2-12 float))
   (with-pp
     (rlet ((vf0 :class vf)

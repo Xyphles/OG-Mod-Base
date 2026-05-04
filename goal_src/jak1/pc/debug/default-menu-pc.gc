@@ -688,6 +688,8 @@
                                                                (flag "Sidekick stats" *display-sidekick-stats* dm-boolean-toggle-pick-func)
                                                                (float-var "Actor birth dist" #f ,(dm-lambda-meters-var (-> *ACTOR-bank* birth-dist)) 20 1 #t 0 10000 1)
                                                                (float-var "Actor pause dist" #f ,(dm-lambda-meters-var (-> *ACTOR-bank* pause-dist)) 20 1 #t 0 10000 1)
+                                                               (float-var "Day/Night Speed" #f ,(dm-lambda-float-var (-> *time-of-day-proc* time-ratio)) 100 300.0 18000.0) ;; Granular control of day night cycle speed -Xyphles
+                                                                 ;; Reference line *time-of-day-fast* (set! (-> *time-of-day-proc* 0 time-ratio) 18000.0) (set! (-> *time-of-day-proc* 0 time-ratio) 300.0)
                                                                (menu "Mood override"
                                                                      (function "-- SIMPLE OVERRIDE" #f nothing)
                                                                      (flag "Palette 0" 0 dm-mood-override-palette-pick-func)

@@ -163,7 +163,7 @@
   :trans
     (behavior ()
       (spool-push *art-control* "plunger-lurker-blowup" 0 self -99.0)
-      (when (and *target* (< (vector-vector-distance-squared (-> self root trans) (target-pos 0)) 6710886400.0))
+      (when (and *target* (< (vector-vector-distance-squared (-> self root trans) (target-pos 0)) 6710886400.0)) 
         (logclear! (-> self mask) (process-mask actor-pause))
         (go plunger-lurker-flee)))
   :code
@@ -361,6 +361,7 @@
          (path-distance (-> self path))))
   (set! (-> self curve-position) (fmin 1.0 (fmax 0.0 (-> self curve-position))))
   (eval-path-curve! (-> self path) (-> self root trans) (-> self curve-position) 'interp)
+  (add-debug-sphere #t (bucket-id debug-no-zbuf) (-> self root trans) (meters 500) (new 'static 'rgba :r #x27 :g #xD7 :b #xF5 :a #x80)) ;; Add debug sphere to show distance check between target and luker -xyphles
   (cond
     ((< (-> self y-offset-desired) (-> self y-offset))
      (set! (-> self y-vel) (* 0.25 (- (-> self y-offset-desired) (-> self y-offset))))
@@ -388,6 +389,7 @@
         (path-control-method-14 (-> self path) (-> self tangent) (-> self curve-position))
         (eval-path-curve! (-> self path) s3-0 (+ (/ 12288.0 (path-distance (-> self path))) (-> self curve-position)) 'interp)
         (eval-path-curve! (-> self path) s4-0 (+ (/ 4096.0 (path-distance (-> self path))) (-> self curve-position)) 'interp)
+       
         (vector-! s3-0 s3-0 (-> self root trans))
         (vector-! s4-0 s4-0 (-> self root trans))
         (set! (-> s3-0 y) 0.0)

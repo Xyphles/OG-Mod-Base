@@ -31,8 +31,20 @@
                     (font-flags shadow kerning)
                     1.25 ;;this shit is a float dont forget
                     )))
+                    ;; Prints the current eco-pill-count in bottom middle of screen (my screen at least lmfao) - Xyphles
 
-;; Prints the current eco-pill-count in bottom middle of screen (my screen at least lmfao)
+;;(defun draw-current-load-state ()
+;;(with-dma-buffer-add-bucket ((buf (-> (current-frame) global-buf)) (bucket-id debug-no-zbuf))
+    ;;(draw-string-xy-scaled (string-format "" *load-state*)
+                    ;;buf
+                    ;;200
+                    ;;200
+                    ;;(font-color progress-percent)
+                    ;;(font-flags shadow kerning)
+                    ;;1.25
+                    ;;)))
+                    ;; dummy to draw current load state, no way it works right now lol - Xyphles
+
 
 (defun draw-last-known-safe-ground ()
 ;;(add-debug-sphere #t (bucket-id debug) (-> self control last-known-safe-ground) (meters 1.0) (new 'static 'rgba :g #x80 :a #x80))
@@ -40,8 +52,33 @@
 
 )
 
+(defun draw-current-checkpoint ()
+ (with-dma-buffer-add-bucket ((buf (-> (current-frame) global-buf)) (bucket-id debug-no-zbuf))
+    (draw-string-xy-scaled (string-format "~S" (current-checkpoint-name))
+                    buf
+                    210
+                    210
+                    (font-color progress-percent)
+                    (font-flags shadow kerning)
+                    1.5 ;;this shit is a float dont forget
+                    )))
+
+(defun draw-truncated-target-stats ((arg0 target) (arg1 symbol))
+ (with-dma-buffer-add-bucket ((buf (-> (current-frame) global-buf)) (bucket-id debug-no-zbuf))
+    (draw-string-xy-scaled (string-format "~A ~A~%" (-> arg0 state name) (-> arg0 control unknown-surface00 name))
+                    buf
+                    10
+                    10
+                    (font-color white)
+                    (font-flags shadow kerning)
+                    1.5 ;;this shit is a float dont forget
+                    )))
+
+
 
 (defun runs-every-frame () 
+;;(draw-truncated-target-stats *target* #t)
+;;(draw-current-checkpoint)
 ;;(draw-last-known-safe-ground)
 ;;(draw-current-eco-pills)
   ;;(increase-power-cell-by-one) This is a call to increase-power-cell-by-one defined in mod-common-functions.gc
